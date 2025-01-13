@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from torchwwn.datasets.iris import Iris
-from torchwwn.datasets.dataset import Dataset
+from torchwnn.datasets.iris import Iris
+from torchwnn.datasets.dataset import Dataset
 
 __all__ = [
     "Iris",

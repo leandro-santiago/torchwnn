@@ -20,5 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torchwwn.classifiers as classifiers
-import torchwwn.encoding as encoding
+import torchwnn.classifiers as classifiers
+import torchwnn.encoding as encoding
+
+__all__ = [
+    "classifiers",    
+    "encoding",    
+]
