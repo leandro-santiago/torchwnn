@@ -5,7 +5,7 @@ Torchwnn is a Python library for *Weightless Neural Network* (also known as *RAM
 # Usage
 ## Installation
 
-First, install PyTorch using their [installation instructions](https://pytorch.org/get-started/locally/). Then, use the following command to install Torcwnn:
+First, install PyTorch using their [installation instructions](https://pytorch.org/get-started/locally/). Then, use the following command to install Torchwnn:
 
 
 ```bash
