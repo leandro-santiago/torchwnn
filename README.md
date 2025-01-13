@@ -3,9 +3,14 @@
 Torchwnn is a Python library for *Weightless Neural Network* (also known as *RAM-based* and *N-tuple based Neural Network* ).
 
 # Usage
-## Prerequisites
+## Installation
 
-First, install PyTorch using their [installation instructions](https://pytorch.org/get-started/locally/).
+First, install PyTorch using their [installation instructions](https://pytorch.org/get-started/locally/). Then, use the following command to install Torcwnn:
+
+
+```bash
+pip install torch-wnn
+```
 
 Requirements: PyTorch and ucimlrepo to load datasets from UCI repository.
 
@@ -14,7 +19,7 @@ Requirements: PyTorch and ucimlrepo to load datasets from UCI repository.
 
 ### Iris Example
 
-To quickly get started with Torchwnn, here's an example using the Iris dataset. Full training code is available in the [test_iris.py](test_iris.py) file.
+To quickly get started with Torchwnn, here's an example using the Iris dataset. Full training code is available in the [examples/iris.py](examples/iris.py) file.
 
 ```python
 import torch

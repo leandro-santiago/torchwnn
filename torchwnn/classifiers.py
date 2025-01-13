@@ -24,7 +24,7 @@ class Wisard(nn.Module):
         self.discriminators = [Discriminator(self.n_rams) for _ in range(n_classes)] 
         
         self.tuple_mapping = torch.empty((n_classes, entry_size), dtype=torch.long)
-        for  i in range(n_classes):      
+        for i in range(n_classes):      
             self.tuple_mapping[i] = torch.randperm(entry_size)
 
         self.tidx = torch.arange(tuple_size).flip(dims=(0,))        
@@ -50,7 +50,7 @@ class Wisard(nn.Module):
             mapped_input = mapped_input.view(tuple_shape)
             mapped_input = (mapped_input << self.tidx).sum(dim=2)
             
-            #Fit all mapped samples of class i
+            # Fit all mapped samples of class i
             self.discriminators[i].fit(mapped_input)            
             
             start_class = end_class
@@ -66,7 +66,7 @@ class Wisard(nn.Module):
             mapped_input = mapped_input.view(tuple_shape)
             mapped_input = (mapped_input << self.tidx).sum(dim=2)            
             
-            #Rank all mapped samples of class i
+            # Rank all mapped samples of class i
             response[i] = self.discriminators[i].rank(mapped_input)                      
 
         return response.transpose_(0,1)
