@@ -1,22 +1,3 @@
-# Torchwnn: *Weightless Neural Network*
-
-Torchwnn is a Python library for *Weightless Neural Network* (also known as *RAM-based* and *N-tuple based Neural Network* ).
-
-# Usage
-## Prerequisites
-
-First, install PyTorch using their [installation instructions](https://pytorch.org/get-started/locally/).
-
-Requirements: PyTorch and ucimlrepo to load datasets from UCI repository.
-
-
-## Quick Start
-
-### Iris Example
-
-To quickly get started with Torchwnn, here's an example using the Iris dataset. Full training code is available in the [test_iris.py](test_iris.py) file.
-
-```python
 import torch
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -51,9 +32,3 @@ with torch.no_grad():
     acc = accuracy_score(predictions, y_test)
     print("Wisard: Accuracy = ", acc)
 
-```
-
-## Supported WNN models
-Currently, the library supports the following WNN models:
-
-- WiSARD - Neurons based on dictionary.
