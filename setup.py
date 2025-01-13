@@ -6,14 +6,9 @@ https://github.com/pypa/sampleproject
 
 from setuptools import setup, find_packages
 
-# Read the version without importing any dependencies
-version = {}
-with open("torchwnn/version.py") as f:
-    exec(f.read(), version)
-
 setup(
     name="torchwnn",
-    version=version["__version__"],
+    version="1.0.0",
     author="Leandro Santiago de Araújo",
     description="Torcwnn is a Python library for Weightless Neural Network",
     long_description=open("README.md").read(),
