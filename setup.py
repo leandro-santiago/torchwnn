@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="torchwnn",
-    version="1.0.2-alpha",
+    version="1.0.1",
     author="Leandro Santiago de Araújo",
     description="Torcwnn is a Python library for Weightless Neural Network",
     long_description=open("README.md").read(),
