@@ -9,7 +9,7 @@ First, install PyTorch using their [installation instructions](https://pytorch.o
 
 
 ```bash
-pip install torch-wnn
+pip install torchwnn
 ```
 
 Requirements: PyTorch and ucimlrepo to load datasets from UCI repository.
