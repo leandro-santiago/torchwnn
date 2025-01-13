@@ -20,7 +20,6 @@ setup(
         "ucimlrepo",
         "pandas",
         "numpy",        
-    ],
-    package_dir={"": "torchwnn"},
-    packages=find_packages(where="torchwnn", exclude=["examples"]),
+    ],    
+    packages=find_packages(exclude=["examples"]),
 )
