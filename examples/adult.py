@@ -2,21 +2,29 @@ import torch
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-from torchwnn.datasets.iris import Iris
+from torchwnn.datasets.adult import Adult
 from torchwnn.classifiers import Wisard
 from torchwnn.encoding import Thermometer
 
+import pandas as pd
 
 # Use the GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using {} device".format(device))
 
-dataset = Iris()
+dataset = Adult()
 
-X = dataset.features
+X_categorical = dataset.features[dataset.categorical_features]
+X_numeric = dataset.features[dataset.numeric_features]
+
+X_categorical = pd.get_dummies(X_categorical, columns=dataset.categorical_features, dtype=pd.Int8Dtype())
+#newcat_data.to_csv("teste.csv")
+X = pd.concat([X_numeric, X_categorical], axis=1)
+
 X = torch.tensor(X.values).to(device)
 y = dataset.labels
 y = torch.tensor(y).squeeze().to(device)
+
 
 bits_encoding = 20
 encoding = Thermometer(bits_encoding).fit(X)    

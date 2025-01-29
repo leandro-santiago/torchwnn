@@ -20,29 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from pandas import read_csv
-from torchwnn.datasets.dataset import Dataset
+import numpy as np
+import torch
 
-class Iris(Dataset):
-    name = "iris"
-    id = 53
-    categorical_features = []
-    numeric_features = ['sepal length', 'sepal width', 'petal length', 'petal width']
+__all__ = [
+    "h3_generate",
+]
 
-    def __init__(self, path = None):
-        if not path:
-            # Loading dataset from uci repo
-            self.load_uci_repo()           
-        else: 
-            names = self.numeric_features + ["class"]
-            self.target_col = "class"
-            data = read_csv(path, names=names)
-            self.features = data[self.numeric_features]
-            self.targets = data[[self.target_col]]  
-            self.num_features = len(self.numeric_features)
-        
-        self.gen_class_ids()
-            
-    
-           
-            
+def h3_generate(num_inputs, num_entries, num_hashes):
+    assert(np.log2(num_entries).is_integer())
+    shape = (num_hashes, num_inputs)
+    values = torch.randint(0, num_entries, shape)
+    return values

@@ -22,8 +22,12 @@
 
 import torchwnn.classifiers as classifiers
 import torchwnn.encoding as encoding
+import torchwnn.filters as filters
+import torchwnn.functional as functional
 
 __all__ = [
     "classifiers",    
-    "encoding",    
+    "encoding", 
+    "filters",
+    "functional",   
 ]

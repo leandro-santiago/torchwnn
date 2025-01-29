@@ -23,26 +23,24 @@
 from pandas import read_csv
 from torchwnn.datasets.dataset import Dataset
 
-class Iris(Dataset):
-    name = "iris"
-    id = 53
-    categorical_features = []
-    numeric_features = ['sepal length', 'sepal width', 'petal length', 'petal width']
+class Statlog(Dataset):
+    name = "statlog"
+    id = 143
+    categorical_features = ['A1', 'A4', 'A5', 'A6', 'A8', 'A9', 'A11', 'A12' ]
+    numeric_features = ['A2', 'A3', 'A7', 'A10', 'A13', 'A14']
 
     def __init__(self, path = None):
         if not path:
             # Loading dataset from uci repo
-            self.load_uci_repo()           
-        else: 
-            names = self.numeric_features + ["class"]
+            self.load_uci_repo()  
+        else:
+            names = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'A10', 'A11', 'A12', 'A13', 'A14', 'class']
             self.target_col = "class"
-            data = read_csv(path, names=names)
-            self.features = data[self.numeric_features]
-            self.targets = data[[self.target_col]]  
-            self.num_features = len(self.numeric_features)
+            data = read_csv(path, names=names, delimiter=" ")
+            self.features = data[names[:-1]]
+            self.targets = data[[self.target_col]]            
         
         self.gen_class_ids()
             
-    
-           
+                                  
             

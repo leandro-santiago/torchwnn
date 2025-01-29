@@ -20,10 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from torchwnn.datasets.adult import Adult
+from torchwnn.datasets.ecoli import Ecoli
+from torchwnn.datasets.glass import GlassIdentification
 from torchwnn.datasets.iris import Iris
+from torchwnn.datasets.letter import LetterRecognition
+#from torchwnn.datasets.mnist import Mnist
 from torchwnn.datasets.dataset import Dataset
 
-__all__ = [
-    "Iris",
+__all__ = [    
     "Dataset",    
+    "Adult",
+    "Ecoli",
+    "GlassIdentification",
+    "Iris",
+    "LetterRecognition",
+#    "Mnist",
+    "Statlog",    
 ]

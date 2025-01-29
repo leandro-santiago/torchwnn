@@ -20,29 +20,38 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from pandas import read_csv
+import torch
+from torchvision import datasets, transforms
+
 from torchwnn.datasets.dataset import Dataset
 
-class Iris(Dataset):
-    name = "iris"
-    id = 53
+class Mnist(Dataset):
+    name = "mnist"    
     categorical_features = []
-    numeric_features = ['sepal length', 'sepal width', 'petal length', 'petal width']
+    numeric_features = []
+    numeric_range = (0, 255)
 
     def __init__(self, path = None):
-        if not path:
-            # Loading dataset from uci repo
-            self.load_uci_repo()           
-        else: 
-            names = self.numeric_features + ["class"]
-            self.target_col = "class"
-            data = read_csv(path, names=names)
-            self.features = data[self.numeric_features]
-            self.targets = data[[self.target_col]]  
-            self.num_features = len(self.numeric_features)
+        self.isimage = True
+
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.ConvertImageDtype(dtype=torch.int8),
+            transforms.Lambda(lambda x: torch.flatten(x))
+        ])
+
+        self.train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+        self.test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
         
-        self.gen_class_ids()
-            
-    
-           
-            
+        self.X_train = self.train_dataset
+        self.y_train = self.train_dataset.targets
+        self.X_test = self.test_dataset
+        self.y_test = self.test_dataset.targets
+        
+        self.num_features = len(self.train_dataset[0][0])
+        self.num_classes = len(self.train_dataset.classes)
+
+        #print(self.num_classes, self.data_size)
+        #print(self.X_train)
+        #print(self.y_train)
+

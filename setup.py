@@ -4,7 +4,13 @@ https://packaging.python.org/guides/distributing-packages-using-setuptools/
 https://github.com/pypa/sampleproject
 """
 
+import os
 from setuptools import setup, find_packages
+from torch.utils.cpp_extension import BuildExtension, CppExtension
+
+cpp_dir = os.path.join('torchwnn', 'cpp')
+ext_modules = []
+ext_modules.append(CppExtension("torchwnn.cpp.functional", [os.path.join(cpp_dir, "functional.cpp")], extra_compile_args=['-O3']))
 
 setup(
     name="torchwnn",
@@ -22,4 +28,6 @@ setup(
         "numpy",        
     ],    
     packages=find_packages(exclude=["examples"]),
+    ext_modules=ext_modules,
+    cmdclass={'build_ext': BuildExtension},
 )

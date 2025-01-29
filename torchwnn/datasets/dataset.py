@@ -1,6 +1,30 @@
+# MIT License
+
+# Copyright (c) 2025 Leandro Santiago de Araújo
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 from typing import Dict
 import numpy as np
 from ucimlrepo import fetch_ucirepo
+from sklearn.preprocessing import LabelEncoder
+from torch.utils import data
 
 class Dataset:
     isimage = False
@@ -47,11 +71,20 @@ class Dataset:
         self.num_classes = len(self.classes)
 
         if isinstance(self.classes[0], str):
-            self.labels_id = {k:v for k, v in zip(self.classes, range(len(self.classes)))}
-            for index, row in self.targets.iterrows():  
-                self.targets.at[index, self.target_col] = self.labels_id[row[self.target_col]]                  
-            
-            self.labels = self.targets[self.target_col]
+            label_encoder = LabelEncoder()
+            self.labels = label_encoder.fit_transform(self.targets[self.target_col])
         else:
-            self.labels_id = self.classes
+            self.labels_id = self.classes        
             self.labels = self.targets[self.target_col]
+
+class BaseDataset(data.Dataset):
+    def __init__(self, features, labels):
+        self.features = features
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.features)
+
+    def __getitem__(self, index: int):        
+        return self.features[index], self.labels[index]
+    

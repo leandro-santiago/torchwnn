@@ -2,16 +2,15 @@ import torch
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-from torchwnn.datasets.iris import Iris
+from torchwnn.datasets.ecoli import Ecoli
 from torchwnn.classifiers import Wisard
 from torchwnn.encoding import Thermometer
-
 
 # Use the GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using {} device".format(device))
 
-dataset = Iris()
+dataset = Ecoli()
 
 X = dataset.features
 X = torch.tensor(X.values).to(device)
@@ -25,7 +24,8 @@ X_bin = encoding.binarize(X).flatten(start_dim=1)
 X_train, X_test, y_train, y_test = train_test_split(X_bin, y, test_size=0.3, random_state = 0)  
 
 entry_size = X_train.shape[1]
-tuple_size = 8
+tuple_size = 20
+print(entry_size)
 model = Wisard(entry_size, dataset.num_classes, tuple_size)
 
 with torch.no_grad():
