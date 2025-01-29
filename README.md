@@ -62,3 +62,4 @@ with torch.no_grad():
 Currently, the library supports the following WNN models:
 
 - WiSARD - Neurons based on dictionary.
+- BloomWiSARD - Neurons based on Bloom Filters. Reference: [Weightless Neural Networks as Memory Segmented Bloom Filters](https://www.sciencedirect.com/science/article/abs/pii/S0925231220305105?via%3Dihub)
