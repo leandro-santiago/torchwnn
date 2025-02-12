@@ -30,4 +30,5 @@ setup(
     packages=find_packages(exclude=["examples"]),
     ext_modules=ext_modules,
     cmdclass={'build_ext': BuildExtension},
+    keywords = ['wisard', 'weithgless', 'neural', 'network'],
 )
