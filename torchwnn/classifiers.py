@@ -69,8 +69,8 @@ class Discriminator:
                 for addr in addresses:
                     if not addr.item() in self.neurons[neuron]:
                         self.neurons[neuron][addr.item()] = 1
-                    
-                    self.neurons[neuron][addr.item()] = self.neurons[neuron][addr.item()] + 1
+                    else:
+                        self.neurons[neuron][addr.item()] = self.neurons[neuron][addr.item()] + 1
         else:
             for neuron, addresses in enumerate(data):
                 for addr in addresses:
