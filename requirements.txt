@@ -1,2 +1,3 @@
 ucimlrepo
 torch
+scikit-learn
