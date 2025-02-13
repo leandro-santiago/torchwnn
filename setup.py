@@ -6,7 +6,6 @@ https://github.com/pypa/sampleproject
 
 import os
 import torch
-import setuptools
 from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 
