@@ -603,15 +603,16 @@ class Wisard(nn.Module):
         input = input[target_indices]
 
         # Recover number of samples by class
-        _, target_counts = torch.unique_consecutive(target, return_counts = True)
-
+        target_outputs, target_counts = torch.unique_consecutive(target, return_counts = True)
+        
         start_class = 0
         end_class = 0
-        for i in range(self.n_classes):
+        for i in range(target_outputs.shape[0]):
             end_class += target_counts[i].item()
-            
+            label = target_outputs[i].item()
+
             # Apply random mapping to all samples of class i
-            mapped_input = torch.index_select(input[start_class:end_class], 1, self.tuple_mapping[i])
+            mapped_input = torch.index_select(input[start_class:end_class], 1, self.tuple_mapping[label])
 
             # Transform all tuples into numeric value for all samples of class i
             tuple_shape = (mapped_input.shape[0], self.n_neurons, self.tuple_size)
@@ -619,7 +620,7 @@ class Wisard(nn.Module):
             mapped_input = self.transform(mapped_input)  
             
             # Fit all mapped samples of class i
-            self.discriminators[i].fit(mapped_input)            
+            self.discriminators[label].fit(mapped_input)            
             
             start_class = end_class
     
