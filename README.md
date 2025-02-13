@@ -108,7 +108,7 @@ with torch.no_grad():
 ```
 ### BloomWisard
 
-Example using BloomWisard is available in the [examples/iris_filters.py](examples/iris_filters.py) file.
+Example using BloomWisard is available in the [examples/iris_filter.py](examples/iris_filter.py) file.
 
 ## Supported WNN models
 Currently, the library supports the following WNN models:
