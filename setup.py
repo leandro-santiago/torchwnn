@@ -21,14 +21,16 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/leandro-santiago/torchwnn",
-    license="MIT",      
-    #package_dir={"": "torchwnn"},
-    #packages=find_packages(where="torchwnn"),  
+    license="MIT",
+    install_requires=[
+        "torch",
+        "ucimlrepo",
+        "scikit-learn",
+        "pandas",
+        "numpy",        
+    ],    
     packages=find_packages(exclude=["examples"]),
     ext_modules=ext_modules,
     cmdclass={'build_ext': BuildExtension},
     keywords = ['wisard', 'weithgless', 'neural', 'network'],
-    install_requires=[
-        'torch'
-    ],
 )
