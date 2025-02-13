@@ -15,7 +15,7 @@ ext_modules.append(CppExtension("torchwnn.cpp.functional", [os.path.join(cpp_dir
 
 setup(
     name="torchwnn",
-    version="1.0.2-beta",
+    version="1.0.2b1",
     author="Leandro Santiago de Araújo",
     description="Torcwnn is a Python library for Weightless Neural Network",
     long_description=open("README.md").read(),
