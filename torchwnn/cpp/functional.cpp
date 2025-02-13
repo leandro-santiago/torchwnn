@@ -96,26 +96,35 @@ void filter_multi_add(
 
 torch::Tensor filter_multi_rank(
     Tensor & filters,
-    Tensor & data
+    Tensor & data,
+    int bleach // 0 - without bleach, > 0 - bleach value
 ) {    
     const auto device = data.device();
 
     Tensor response = torch::zeros(
         {data.size(0)},
         torch::dtype(torch::kInt64).device(device));
-    
-    for (long int i = 0; i < data.size(0); i++) {
-        Tensor selected_entries = torch::clamp(torch::gather(filters, 1, data[i]), 0, 1);
-        
-        for (long int j = 0; j < data.size(1); j++) {
-            int and_value = 1;
-            for (long int k = 0; k < data.size(2); k++) {
-                and_value = and_value & selected_entries[j][k].item<int>();
-            }
 
-            response[i] += and_value;
+    if (bleach > 0) {
+        for (long int i = 0; i < data.size(0); i++) {
+            Tensor selected_entries = torch::gather(filters, 1, data[i]);
+            auto [values, indexes] = torch::min(selected_entries, 1);
+            response[i] += (values > bleach).sum();            
         }
-    }
+    } else {
+        for (long int i = 0; i < data.size(0); i++) {
+            Tensor selected_entries = torch::clamp(torch::gather(filters, 1, data[i]), 0, 1);
+            
+            for (long int j = 0; j < data.size(1); j++) {
+                int and_value = 1;
+                for (long int k = 0; k < data.size(2); k++) {
+                    and_value = and_value & selected_entries[j][k].item<int>();
+                }
+
+                response[i] += and_value;
+            }
+        }
+    }     
 
     return response;
 }
