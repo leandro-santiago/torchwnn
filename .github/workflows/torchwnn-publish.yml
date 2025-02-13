@@ -29,9 +29,10 @@ jobs:
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.          
+          pip install torch
           python -m pip install build
           python -m build
-          pip install torch
+          
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
