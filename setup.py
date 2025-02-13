@@ -5,7 +5,6 @@ https://github.com/pypa/sampleproject
 """
 
 import os
-import torch
 from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 
@@ -23,11 +22,7 @@ setup(
     url="https://github.com/leandro-santiago/torchwnn",
     license="MIT",
     install_requires=[
-        "torch",
-        "ucimlrepo",
-        "scikit-learn",
-        "pandas",
-        "numpy",        
+        'torch'
     ],    
     packages=find_packages(exclude=["examples"]),
     ext_modules=ext_modules,
