@@ -5,6 +5,7 @@ https://github.com/pypa/sampleproject
 """
 
 import os
+import torch
 from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 
@@ -14,7 +15,7 @@ ext_modules.append(CppExtension("torchwnn.cpp.functional", [os.path.join(cpp_dir
 
 setup(
     name="torchwnn",
-    version="1.0.2",
+    version="0.0.1a0",
     author="Leandro Santiago de Araújo",
     description="Torcwnn is a Python library for Weightless Neural Network",
     long_description=open("README.md").read(),
