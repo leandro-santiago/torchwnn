@@ -6,6 +6,7 @@ https://github.com/pypa/sampleproject
 
 import os
 import torch
+import setuptools
 from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 
@@ -21,12 +22,14 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/leandro-santiago/torchwnn",
-    license="MIT",
-    install_requires=[
-        'torch'
-    ],    
+    license="MIT",      
+    #package_dir={"": "torchwnn"},
+    #packages=find_packages(where="torchwnn"),  
     packages=find_packages(exclude=["examples"]),
     ext_modules=ext_modules,
     cmdclass={'build_ext': BuildExtension},
     keywords = ['wisard', 'weithgless', 'neural', 'network'],
+    install_requires=[
+        'torch'
+    ],
 )
