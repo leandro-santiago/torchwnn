@@ -24,6 +24,7 @@ setup(
     install_requires=[
         "torch",
         "ucimlrepo",
+        "scikit-learn",
         "pandas",
         "numpy",        
     ],    
