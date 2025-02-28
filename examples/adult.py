@@ -18,7 +18,6 @@ X_categorical = dataset.features[dataset.categorical_features]
 X_numeric = dataset.features[dataset.numeric_features]
 
 X_categorical = pd.get_dummies(X_categorical, columns=dataset.categorical_features, dtype=pd.Int8Dtype())
-#newcat_data.to_csv("teste.csv")
 X = pd.concat([X_numeric, X_categorical], axis=1)
 
 X = torch.tensor(X.values).to(device)

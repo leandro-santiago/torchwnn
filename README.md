@@ -110,13 +110,21 @@ with torch.no_grad():
 
 Example using BloomWisard is available in the [examples/iris_filter.py](examples/iris_filter.py) file.
 
+
+### Regression
+
+Example using RegressionWisard is available in the [examples/airfoil_regression.py](examples/airfoil_regression.py) file.
+
+
 ## Supported WNN models
 Currently, the library supports the following WNN models:
 
 - WiSARD - Neurons based on dictionary.
 - BloomWiSARD - Neurons based on Bloom Filters. Reference: [Weightless Neural Networks as Memory Segmented Bloom Filters](https://www.sciencedirect.com/science/article/abs/pii/S0925231220305105?via%3Dihub)
+- RegressionWiSARD - Reference: [Extending the weightless WiSARD classifier for regression](https://www.sciencedirect.com/science/article/abs/pii/S092523122030504X)
 
 Supported techniques:
 - B-bleaching - Bleaching based on binary search. Reference: *B-bleaching : Agile Overtraining Avoidance in the WiSARD Weightless Neural Classifier*.
     - WiSARD
     - BloomWiSARD
+    

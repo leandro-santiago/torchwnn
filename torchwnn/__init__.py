@@ -21,12 +21,14 @@
 # SOFTWARE.
 
 import torchwnn.classifiers as classifiers
+import torchwnn.regressors as regressors
 import torchwnn.encoding as encoding
 import torchwnn.filters as filters
 import torchwnn.functional as functional
 
 __all__ = [
     "classifiers",    
+    "regressors",    
     "encoding", 
     "filters",
     "functional",   

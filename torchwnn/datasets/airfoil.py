@@ -20,23 +20,29 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from torchwnn.datasets.adult import Adult
-from torchwnn.datasets.airfoil import Airfoil
-from torchwnn.datasets.ecoli import Ecoli
-from torchwnn.datasets.glass import GlassIdentification
-from torchwnn.datasets.iris import Iris
-from torchwnn.datasets.letter import LetterRecognition
-#from torchwnn.datasets.mnist import Mnist
-from torchwnn.datasets.dataset import Dataset
+from pandas import read_csv
+from binhd.datasets.dataset import Dataset
 
-__all__ = [    
-    "Dataset",    
-    "Adult",
-    "Airfoil",
-    "Ecoli",
-    "GlassIdentification",
-    "Iris",
-    "LetterRecognition",
-#    "Mnist",
-    "Statlog",    
-]
+class Airfoil(Dataset):
+    name = "airfoil"
+    id = 291
+    categorical_features = []
+    numeric_features = ['frequency', 'attack-angle','chord-length', 'free-stream-velocity', 'suction-side-displacement-thickness']
+
+    def __init__(self, path = None):
+        if not path:
+            # Loading dataset from uci repo
+            self.load_uci_repo()  
+        else:
+            names = ['frequency', 'attack-angle', 'chord-length', 'free-stream-velocity', 'suction-side-displacement-thickness']
+            self.target_col = "scaled-sound-pressure"
+            data = read_csv(path, names=names, delimiter=" ")
+            self.features = data[names[:-1]]
+            self.targets = data[[self.target_col]]            
+        
+        self.gen_class_ids()
+
+        
+   
+            
+   
