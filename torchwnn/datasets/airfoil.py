@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 from pandas import read_csv
-from binhd.datasets.dataset import Dataset
+from torchwnn.datasets.dataset import Dataset
 
 class Airfoil(Dataset):
     name = "airfoil"
